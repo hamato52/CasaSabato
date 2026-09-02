@@ -174,7 +174,11 @@
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px' });
 
+    var vh = window.innerHeight || 0;
     Array.prototype.forEach.call(items, function (el, i) {
+      // Anything already on screen at load starts visible — the page's first
+      // frame (and any thumbnail of it) should never be a blank fade-in.
+      if (el.getBoundingClientRect().top < vh) { el.classList.add('is-in'); return; }
       el.style.transitionDelay = Math.min(i % 6, 5) * 60 + 'ms';
       io.observe(el);
     });
