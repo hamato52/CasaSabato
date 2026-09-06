@@ -94,81 +94,124 @@
     </div>
   </div>
 
-  <!-- ── Services ─────────────────────────────────────── -->
-  <section class="section" id="services">
-    <div class="wrap">
-      <header class="section__head reveal">
-        <p class="eyebrow" data-i18n="services.eyebrow">الخدمات</p>
-        <h2 class="section__title" data-i18n="services.title">ما الذي نبنيه معك</h2>
-        <p class="section__sub" data-i18n="services.sub">ست خدمات أساسية تُقدَّم منفردة أو كمسار متكامل من الرؤية إلى الإطلاق.</p>
-      </header>
+  <!-- ── Services — pinned scroll ─────────────────────── -->
+  <section id="services">
+    <div class="pin" id="svcPin">
+      <div class="pin__stage">
+        <div class="wrap pin__grid">
 
-      <div class="grid grid--3">
-        <article class="card reveal">
-          <span class="card__no">01</span>
-          <h3 data-i18n="svc1.t">استشارات البراند</h3>
-          <p data-i18n="svc1.d">تشخيص وضع البراند الحالي، تحديد الجمهور والتموضع، وبناء خارطة طريق واضحة للخطوة القادمة.</p>
-          <ul class="tags">
-            <li data-i18n="svc1.a">تشخيص وتموضع</li>
-            <li data-i18n="svc1.b">تحليل المنافسين</li>
-            <li data-i18n="svc1.c">خارطة طريق</li>
-          </ul>
-        </article>
+          <div class="pin__side">
+            <p class="eyebrow" data-i18n="services.eyebrow">الخدمات</p>
+            <h2 class="pin__title" data-i18n="services.title">ما الذي نبنيه معك</h2>
+            <p class="pin__sub" data-i18n="services.sub">ست خدمات أساسية تُقدَّم منفردة أو كمسار متكامل من الرؤية إلى الإطلاق.</p>
 
-        <article class="card reveal">
-          <span class="card__no">02</span>
-          <h3 data-i18n="svc2.t">استراتيجية العلامة</h3>
-          <p data-i18n="svc2.d">جوهر البراند وقصته ونبرته وأسلوبه — الأساس المكتوب الذي يقف خلف كل قرار بصري لاحق.</p>
-          <ul class="tags">
-            <li data-i18n="svc2.a">القصة والرسالة</li>
-            <li data-i18n="svc2.b">نبرة الصوت</li>
-            <li data-i18n="svc2.c">التسمية</li>
-          </ul>
-        </article>
+            <div class="rail__wrap">
+              <span class="rail__fill" id="svcFill" aria-hidden="true"></span>
+              <ol class="rail">
+            <li>
+              <button type="button" class="rail__btn" data-go="0">
+                <span class="rail__no">01</span>
+                <span data-i18n="svc1.t">استشارات البراند</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="rail__btn" data-go="1">
+                <span class="rail__no">02</span>
+                <span data-i18n="svc2.t">استراتيجية العلامة</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="rail__btn" data-go="2">
+                <span class="rail__no">03</span>
+                <span data-i18n="svc3.t">الهوية البصرية</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="rail__btn" data-go="3">
+                <span class="rail__no">04</span>
+                <span data-i18n="svc4.t">الإدارة الفنية</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="rail__btn" data-go="4">
+                <span class="rail__no">05</span>
+                <span data-i18n="svc5.t">تطبيقات المنتج</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="rail__btn" data-go="5">
+                <span class="rail__no">06</span>
+                <span data-i18n="svc6.t">دليل البراند</span>
+              </button>
+            </li>
+              </ol>
+            </div>
+          </div>
 
-        <article class="card reveal">
-          <span class="card__no">03</span>
-          <h3 data-i18n="svc3.t">الهوية البصرية</h3>
-          <p data-i18n="svc3.d">الشعار ونظام الألوان والخطوط والعناصر الجرافيكية — مصمّمة خصيصاً لعالم الملابس والتجزئة.</p>
-          <ul class="tags">
-            <li data-i18n="svc3.a">الشعار والنظام</li>
-            <li data-i18n="svc3.b">الألوان والخطوط</li>
-            <li data-i18n="svc3.c">العناصر البصرية</li>
-          </ul>
-        </article>
+          <div class="pin__panels">
+          <article class="panel" aria-hidden="true">
+            <span class="panel__no">01</span>
+            <h3 data-i18n="svc1.t">استشارات البراند</h3>
+            <p data-i18n="svc1.d">تشخيص وضع البراند الحالي، تحديد الجمهور والتموضع، وبناء خارطة طريق واضحة للخطوة القادمة.</p>
+            <ul class="tags">
+              <li data-i18n="svc1.a">تشخيص وتموضع</li>
+              <li data-i18n="svc1.b">تحليل المنافسين</li>
+              <li data-i18n="svc1.c">خارطة طريق</li>
+            </ul>
+          </article>
+          <article class="panel" aria-hidden="true">
+            <span class="panel__no">02</span>
+            <h3 data-i18n="svc2.t">استراتيجية العلامة</h3>
+            <p data-i18n="svc2.d">جوهر البراند وقصته ونبرته وأسلوبه — الأساس المكتوب الذي يقف خلف كل قرار بصري لاحق.</p>
+            <ul class="tags">
+              <li data-i18n="svc2.a">القصة والرسالة</li>
+              <li data-i18n="svc2.b">نبرة الصوت</li>
+              <li data-i18n="svc2.c">التسمية</li>
+            </ul>
+          </article>
+          <article class="panel" aria-hidden="true">
+            <span class="panel__no">03</span>
+            <h3 data-i18n="svc3.t">الهوية البصرية</h3>
+            <p data-i18n="svc3.d">الشعار ونظام الألوان والخطوط والعناصر الجرافيكية — مصمّمة خصيصاً لعالم الملابس والتجزئة.</p>
+            <ul class="tags">
+              <li data-i18n="svc3.a">الشعار والنظام</li>
+              <li data-i18n="svc3.b">الألوان والخطوط</li>
+              <li data-i18n="svc3.c">العناصر البصرية</li>
+            </ul>
+          </article>
+          <article class="panel" aria-hidden="true">
+            <span class="panel__no">04</span>
+            <h3 data-i18n="svc4.t">الإدارة الفنية</h3>
+            <p data-i18n="svc4.d">اتجاه التصوير والستايلنغ ومزاج الكولكشن، وإدارة الجلسات لضمان صورة موحّدة للبراند.</p>
+            <ul class="tags">
+              <li data-i18n="svc4.a">مود بورد</li>
+              <li data-i18n="svc4.b">اتجاه التصوير</li>
+              <li data-i18n="svc4.c">لوك بوك</li>
+            </ul>
+          </article>
+          <article class="panel" aria-hidden="true">
+            <span class="panel__no">05</span>
+            <h3 data-i18n="svc5.t">تطبيقات المنتج</h3>
+            <p data-i18n="svc5.d">اللِيبل والتاق والتغليف والأكياس وبطاقة الشكر — كل ما يلمسه العميل بيده يحمل نفس اللغة.</p>
+            <ul class="tags">
+              <li data-i18n="svc5.a">التاق واللِيبل</li>
+              <li data-i18n="svc5.b">التغليف</li>
+              <li data-i18n="svc5.c">تجربة الفتح</li>
+            </ul>
+          </article>
+          <article class="panel" aria-hidden="true">
+            <span class="panel__no">06</span>
+            <h3 data-i18n="svc6.t">دليل البراند</h3>
+            <p data-i18n="svc6.d">كتيّب استخدام كامل يسلّم لفريقك أو لأي مصمم، فيبقى البراند متماسكاً بعد انتهاء المشروع.</p>
+            <ul class="tags">
+              <li data-i18n="svc6.a">Brand Book</li>
+              <li data-i18n="svc6.b">قواعد الاستخدام</li>
+              <li data-i18n="svc6.c">ملفات جاهزة</li>
+            </ul>
+          </article>
+          </div>
 
-        <article class="card reveal">
-          <span class="card__no">04</span>
-          <h3 data-i18n="svc4.t">الإدارة الفنية</h3>
-          <p data-i18n="svc4.d">اتجاه التصوير والستايلنغ ومزاج الكولكشن، وإدارة الجلسات لضمان صورة موحّدة للبراند.</p>
-          <ul class="tags">
-            <li data-i18n="svc4.a">مود بورد</li>
-            <li data-i18n="svc4.b">اتجاه التصوير</li>
-            <li data-i18n="svc4.c">لوك بوك</li>
-          </ul>
-        </article>
-
-        <article class="card reveal">
-          <span class="card__no">05</span>
-          <h3 data-i18n="svc5.t">تطبيقات المنتج</h3>
-          <p data-i18n="svc5.d">اللِيبل والتاق والتغليف والأكياس وبطاقة الشكر — كل ما يلمسه العميل بيده يحمل نفس اللغة.</p>
-          <ul class="tags">
-            <li data-i18n="svc5.a">التاق واللِيبل</li>
-            <li data-i18n="svc5.b">التغليف</li>
-            <li data-i18n="svc5.c">تجربة الفتح</li>
-          </ul>
-        </article>
-
-        <article class="card reveal">
-          <span class="card__no">06</span>
-          <h3 data-i18n="svc6.t">دليل البراند</h3>
-          <p data-i18n="svc6.d">كتيّب استخدام كامل يسلّم لفريقك أو لأي مصمم، فيبقى البراند متماسكاً بعد انتهاء المشروع.</p>
-          <ul class="tags">
-            <li data-i18n="svc6.a">Brand Book</li>
-            <li data-i18n="svc6.b">قواعد الاستخدام</li>
-            <li data-i18n="svc6.c">ملفات جاهزة</li>
-          </ul>
-        </article>
+        </div>
       </div>
     </div>
   </section>

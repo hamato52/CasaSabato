@@ -184,6 +184,86 @@
     });
   }
 
+  /* ── Pinned services scroll ──────────────────────────── */
+  /* While #svcPin is on screen its stage is stuck, so scroll position within
+     the section maps straight onto which service panel is showing. */
+  var pin = document.getElementById('svcPin');
+  if (pin) {
+    var panels = Array.prototype.slice.call(pin.querySelectorAll('.panel'));
+    var railBtns = Array.prototype.slice.call(pin.querySelectorAll('.rail__btn'));
+    var fill = document.getElementById('svcFill');
+    var N = panels.length;
+    var current = -1;
+    var pinned = false;
+
+    pin.style.setProperty('--panels', N);
+
+    var wideMQ = window.matchMedia('(min-width: 900px) and (min-height: 560px)');
+    var motionMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function setActive(i) {
+      if (i === current) return;
+      current = i;
+      panels.forEach(function (el, n) {
+        var on = n === i;
+        el.classList.toggle('is-active', on);
+        el.setAttribute('aria-hidden', on ? 'false' : 'true');
+      });
+      railBtns.forEach(function (b, n) {
+        b.classList.toggle('is-on', n === i);
+        if (n === i) { b.setAttribute('aria-current', 'true'); }
+        else { b.removeAttribute('aria-current'); }
+      });
+    }
+
+    function span() { return pin.offsetHeight - window.innerHeight; }
+
+    function update() {
+      if (!pinned) return;
+      var d = span();
+      if (d <= 0) return;
+      var progress = -pin.getBoundingClientRect().top / d;
+      progress = Math.max(0, Math.min(1, progress));
+      fill.style.transform = 'scaleY(' + progress + ')';
+      setActive(Math.min(N - 1, Math.floor(progress * N)));
+    }
+
+    var ticking = false;
+    function onPinScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () { update(); ticking = false; });
+    }
+
+    function setMode() {
+      pinned = wideMQ.matches && !motionMQ.matches;
+      pin.classList.toggle('is-off', !pinned);
+      if (pinned) { current = -1; update(); return; }
+      current = -1;
+      panels.forEach(function (el) { el.removeAttribute('aria-hidden'); });
+      railBtns.forEach(function (b) { b.classList.remove('is-on'); b.removeAttribute('aria-current'); });
+    }
+
+    railBtns.forEach(function (b, n) {
+      b.addEventListener('click', function () {
+        if (!pinned) return;
+        var top = pin.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: top + span() * ((n + 0.5) / N),
+          behavior: motionMQ.matches ? 'auto' : 'smooth'
+        });
+      });
+    });
+
+    setMode();
+    window.addEventListener('scroll', onPinScroll, { passive: true });
+    window.addEventListener('resize', function () { setMode(); onPinScroll(); });
+    if (wideMQ.addEventListener) {
+      wideMQ.addEventListener('change', setMode);
+      motionMQ.addEventListener('change', setMode);
+    }
+  }
+
   /* ── Contact form → mailto ───────────────────────────── */
   var MAILTO = 'hello@casasabato.com';
   var form = document.getElementById('contactForm');

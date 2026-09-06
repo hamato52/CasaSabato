@@ -174,24 +174,90 @@ html[dir="rtl"] .hero__title{ direction:ltr; text-align:right; }
 html[dir="rtl"] .section__title{ line-height:1.3; }
 .section__sub{ margin-block-start:16px; color:var(--ink-soft); font-size:1.02rem; max-width:56ch; }
 
-/* ── Cards ───────────────────────────────────────────── */
-.grid{ display:grid; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--r); overflow:hidden; }
-.grid--3{ grid-template-columns:repeat(3,1fr); }
+/* ── Pinned services ─────────────────────────────────── */
+/* The section is tall; .pin__stage sticks for its whole height, so each
+   screenful of scrolling advances one service panel. */
+.pin{
+  position:relative;
+  --dwell:72vh;
+  height:calc(100vh + (var(--panels,6) * var(--dwell)));
+}
+.pin__stage{
+  position:sticky; inset-block-start:0;
+  height:100vh; height:100svh;
+  display:flex; align-items:center; overflow:hidden;
+  padding-block-start:72px;             /* clear the sticky nav */
+  box-sizing:border-box;
+}
+.pin__grid{
+  display:grid; grid-template-columns:minmax(220px,300px) 1fr;
+  gap:clamp(40px,6vw,96px); align-items:center; width:100%;
+}
 
-.card{
-  background:var(--bone); padding:clamp(26px,3.4vw,38px);
-  display:flex; flex-direction:column; gap:12px;
-  transition:background .35s var(--ease), transform .35s var(--ease);
+.pin__title{ font-family:var(--sf); font-weight:400; font-size:clamp(1.7rem,2.6vw,2.2rem); line-height:1.15; }
+html[dir="rtl"] .pin__title{ font-family:var(--ar); font-weight:600; line-height:1.4; }
+.pin__sub{ margin-block-start:12px; color:var(--ink-soft); font-size:.92rem; }
+
+/* Rail — the list of all six, with a progress line tracking scroll. */
+.rail__wrap{ position:relative; margin-block-start:32px; border-inline-start:1px solid var(--line); }
+.rail__fill{
+  position:absolute; inset-block-start:0; inset-inline-start:-1px;
+  width:1px; height:100%; background:var(--clay);
+  transform:scaleY(0); transform-origin:top;
 }
-.card:hover{ background:var(--white); }
-.card__no{ font-family:var(--sf); font-size:.95rem; color:var(--clay); letter-spacing:.06em; }
-.card h3{ font-size:1.22rem; font-weight:600; }
-.card p{ color:var(--ink-soft); font-size:.95rem; }
-.tags{ display:flex; flex-wrap:wrap; gap:7px; margin-block-start:auto; padding-block-start:16px; }
+.rail{ display:flex; flex-direction:column; }
+.rail__btn{
+  display:flex; align-items:baseline; gap:12px; width:100%;
+  padding:9px 0; padding-inline-start:18px;
+  background:none; border:0; cursor:pointer; font:inherit; font-size:.92rem;
+  color:var(--ink-mute); text-align:start;
+  opacity:.5; transition:opacity .35s var(--ease), color .35s var(--ease);
+}
+.rail__btn:hover{ opacity:.85; }
+.rail__btn.is-on{ opacity:1; color:var(--ink); }
+.rail__no{ font-family:var(--sf); font-size:.8rem; color:var(--clay); }
+
+/* Panels stack in one grid cell and cross-fade. */
+.pin__panels{ display:grid; }
+.panel{
+  grid-area:1 / 1;
+  display:flex; flex-direction:column; align-items:flex-start; gap:14px;
+  opacity:0; visibility:hidden; transform:translateY(16px);
+  transition:opacity .55s var(--ease), transform .55s var(--ease), visibility .55s;
+}
+.panel.is-active{ opacity:1; visibility:visible; transform:none; }
+.panel__no{ font-family:var(--sf); font-size:clamp(3rem,7vw,5rem); line-height:.9; color:var(--clay); }
+.panel h3{ font-family:var(--sf); font-weight:400; font-size:clamp(1.9rem,4vw,2.9rem); line-height:1.1; }
+html[dir="rtl"] .panel h3{ font-family:var(--ar); font-weight:600; font-size:clamp(1.6rem,3.4vw,2.4rem); line-height:1.35; }
+.panel p{ color:var(--ink-soft); font-size:clamp(1rem,1.4vw,1.14rem); max-width:46ch; }
+
+.tags{ display:flex; flex-wrap:wrap; gap:7px; padding-block-start:8px; }
 .tags li{
-  font-size:.75rem; color:var(--ink-mute); border:1px solid var(--line);
-  border-radius:100px; padding:4px 11px; background:var(--bone-2);
+  font-size:.78rem; color:var(--ink-mute); border:1px solid var(--line);
+  border-radius:100px; padding:5px 13px; background:var(--bone-2);
 }
+
+/* Fallback: no pinning on small screens or under reduced-motion —
+   the same six panels simply stack as cards. */
+.pin.is-off{ height:auto; }
+.pin.is-off .pin__stage{
+  position:static; height:auto; display:block; overflow:visible;
+  padding-block:clamp(64px,10vw,120px);
+}
+.pin.is-off .pin__grid{ grid-template-columns:1fr; gap:clamp(32px,5vw,48px); }
+.pin.is-off .rail__wrap{ display:none; }
+.pin.is-off .pin__panels{
+  grid-template-columns:1fr; gap:1px;
+  background:var(--line); border:1px solid var(--line); border-radius:var(--r); overflow:hidden;
+}
+.pin.is-off .panel{
+  grid-area:auto; opacity:1; visibility:visible; transform:none;
+  background:var(--bone); padding:clamp(26px,5vw,36px); gap:10px;
+}
+.pin.is-off .panel__no{ font-size:1rem; }
+.pin.is-off .panel h3,
+html[dir="rtl"] .pin.is-off .panel h3{ font-size:1.25rem; font-family:inherit; font-weight:600; line-height:1.4; }
+.pin.is-off .panel p{ font-size:.97rem; }
 
 /* ── Steps ───────────────────────────────────────────── */
 .steps{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
@@ -276,7 +342,6 @@ html[dir="rtl"] .section__title{ line-height:1.3; }
 
 /* ── Responsive ──────────────────────────────────────── */
 @media (max-width:980px){
-  .grid--3{ grid-template-columns:repeat(2,1fr); }
   .deliv, .about, .contact__inner{ grid-template-columns:1fr; }
 }
 @media (max-width:760px){
@@ -285,7 +350,6 @@ html[dir="rtl"] .section__title{ line-height:1.3; }
   .nav__actions .btn{ display:none; }
   .mobile{ display:none; }
   .mobile:not([hidden]){ display:flex; }
-  .grid--3{ grid-template-columns:1fr; }
   .steps{ grid-template-columns:1fr; }
   .form{ grid-template-columns:1fr; }
   .hero__stats{ grid-template-columns:1fr; gap:16px; }
